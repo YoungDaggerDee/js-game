@@ -14,10 +14,10 @@ const game = {
     startIn: 1000
 }
 // LOAD PLAYER
-$.getScript('./player.js', ()=>{
+$.getScript('./oop/player.js', ()=>{
     player = new Player([140,20],[canvas.height-20,canvas.width/2-140/2],'red')
 })
-$.getScript('./ball.js', ()=>{
+$.getScript('./oop/ball.js', ()=>{
     ball = new Ball(20,'blue')
 })
 // REPAINT 
@@ -34,11 +34,15 @@ window.onkeypress = (e)=>{
         break;
     }
 }
+
 setTimeout(()=>{
     let interval = setInterval(()=>{
+        if(!game.status){
+            clearInterval(interval)
+        }
         repaint()
         player.draw()
-        ball.draw()
+        ball.movement()
     },1)
 },game.startIn)
 

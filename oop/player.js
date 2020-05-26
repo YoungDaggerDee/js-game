@@ -2,9 +2,9 @@ class Player{
     constructor(size,position,color){
         this.size = size // ARRAY
         this.position = position // ARRAY
-        this.color = color
+        this.color = color //STRING
         this.points = 0
-        this.speed = 10
+        this.speed = 20
         this.draw()
     }
     draw(){
