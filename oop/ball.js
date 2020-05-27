@@ -1,9 +1,9 @@
 class Ball{
     constructor(size,color){
-        this.size = size
+        this.size = size 
         this.color = color
-        // this.position = [canvas.height/2-this.size,canvas.width/2-this.size] CENTER
-        this.position = [Math.floor(Math.random () * 400) +50,Math.floor(Math.random () * 400) +50 ]
+        // this.position = [canvas.height/2-this.size,canvas.width/2-this.size] CENTER 
+        this.position = [Math.floor(Math.random () * (canvas.width/4) ) +50,Math.floor(Math.random () * (canvas.height/4) ) +50 ]
         this.direction = []
         this.direction['x'] = Math.random() >= 0.5
         this.direction['y'] = Math.random() >= 0.5
@@ -32,7 +32,7 @@ class Ball{
     //MOVEMENT 
     movement(){
         // COLLISION
-        
+
         // LEFT
         if(canvas.width-this.size == this.position[1]){
             this.direction['x'] = !this.direction['x']
@@ -51,11 +51,9 @@ class Ball{
         }
 
         // PLAYER COLLISION
-        console.log(canvas.height-this.position[0]-1,player.size[1])
         if(this.position[1] >= player.position[1] && this.position[1] <= player.position[1]+player.size[0]){ // X -> Y
             if(canvas.height-this.position[0]-1 == player.size[1]*2){
                 this.direction['y'] = !this.direction['y']
-                console.log('smash')
             }
         }
         

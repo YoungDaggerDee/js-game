@@ -20,6 +20,16 @@ $.getScript('./oop/player.js', ()=>{
 $.getScript('./oop/ball.js', ()=>{
     ball = new Ball(20,'blue')
 })
+$.getScript('./oop/block.js', ()=>{
+    let tmp
+    let tmpY = 0,tmpX = 0
+    for(let i=0;i<canvas.width/25-1;i++){
+        tmp = new Block(50,'black',[tmpX*50,tmpY*50], i)
+        tmpX++
+        block.push(tmp)
+        console.log(i)
+    }
+})
 // REPAINT 
 function repaint(){
     canvas.ctx.clearRect(0,0,canvas.width,canvas.height)
@@ -34,13 +44,20 @@ window.onkeypress = (e)=>{
         break;
     }
 }
-
 setTimeout(()=>{
     let interval = setInterval(()=>{
+        if(block.length == 0){
+            game.status = false
+        }
         if(!game.status){
             clearInterval(interval)
+            return
         }
         repaint()
+        for(let i=0;i<block.length;i++){
+            block[i].draw()
+            block[i].collision()
+        }
         player.draw()
         ball.movement()
     },1)
